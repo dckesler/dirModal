@@ -1,6 +1,14 @@
 
 <div ng-transclude ng-show="!modal.active && !modal.transition"></div>
-<div ng-show="modal.active && !modal.transition">
+<!-- For smaller window -->
+<div ng-if="!modal.modalFull" ng-show="modal.active && !modal.transition">
+    Aaardvark
+    <h2>{{modal.modalTitle}}</h2>
+    <p style="text-align: left">{{modal.modalContent}}</p>
+</div>
+<!-- For full window -->
+<div ng-if="modal.modalFull" ng-show="modal.active && !modal.transition">
+    Grampa's biscuits
     <h2>{{modal.modalTitle}}</h2>
     <p style="text-align: left">{{modal.modalContent}}</p>
 </div>

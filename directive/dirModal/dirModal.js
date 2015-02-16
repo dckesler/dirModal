@@ -7,12 +7,12 @@
             restrict: "A",
             scope: {
                 modalTitle: "=",
-                modalContent: "="
+                modalContent: "=",
+                modalFull: "@"
             },
             templateUrl: "directive/dirModal/dirModal.html",
             controller: function(){
                 var modal = this;
-
                 modal.active = false;
                 modal.transition = false;
             },
