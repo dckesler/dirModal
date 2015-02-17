@@ -1,15 +1,15 @@
 (function(){
     angular
-        .module("dirModal", [])
-        .directive("dirModal", dirModal);
-    function dirModal($timeout){
+        .module("dirModal")
+        .directive("fullDirModal", fullDirModal);
+    function fullDirModal($timeout){
         return {
             restrict: "A",
             scope: {
                 modalTitle: "=",
                 modalContent: "="
             },
-            templateUrl: "directive/dirModal/dirModal.html",
+            templateUrl: "directive/dirModal/fullDirModal.html",
             controller: function(){
                 var modal = this;
                 modal.active = false;
@@ -33,7 +33,7 @@
                     };
 
                     //This is the Div that closes the modal
-                    var closer = angular.element('<div style="width: 15px; height: 15px; border: 2px solid #CCCCCC; cursor: pointer; position: absolute; top: 5px; left: 5px"></div>');
+                    var closer = angular.element('<div style="width: 20px; height: 25px; border: 3px solid #CCCCCC; cursor: pointer; position: absolute; top: 5px; left: 5px"></div>');
 
                     elem.on("click", function(){
                         if(!modal){
@@ -53,19 +53,15 @@
                             scope.modal.transition = true;
                             scope.$apply();
 
-                            //This is the div that makes the background fade and sticks it over the body
-                            backgroundFade = angular.element('<div style="width:'+ window.innerWidth +'px; height:' + window.innerHeight + 'px; background: burlywood; opacity: .4; position: absolute; z-index: 10000;"></div>');
-                            $('body').prepend(backgroundFade);
-
                             //Modal expanding animation
                             elem.animate({
-                                width: attrs.modalSize + 'px',
-                                height: attrs.modalSize + 'px',
-                                left: ((window.innerWidth / 2) - (Number(attrs.modalSize) / 2)) + 'px',
-                                top: ((window.innerHeight / 2) - (Number(attrs.modalSize) / 2)) + 'px'
+                                width: window.innerWidth+'px',
+                                height: window.innerHeight+'px',
+                                left: 0,
+                                top: 0
                             }, {complete: function(){
-                                //Padding for modal
-                                elem.css("padding", "15px 30px");
+                                //Padding for full-size
+                                elem.css("padding", "50px 150px");
                                 scope.modal.active = true;
                                 scope.modal.transition = false;
                                 scope.$apply();
@@ -73,6 +69,12 @@
                                 //Adds close button
                                 elem.append(closer);
                             }});
+
+                            //Keeps the full-size window the size of the whole window
+                            window.onresize = function(){
+                                elem.css("width", window.innerWidth+'px');
+                                elem.css("height", window.innerHeight+'px');
+                            }
                         }
                     });
 
@@ -91,9 +93,6 @@
 
                             //Remove all of the added in parts to go back to button mode
                             angular.element(closer).remove();
-                            if(backgroundFade){
-                                angular.element(backgroundFade).remove();
-                            }
 
                             //Back to button animation
                             scope.modal.transition = true;
