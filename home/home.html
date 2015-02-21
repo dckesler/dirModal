@@ -1,9 +1,11 @@
 <div ng-repeat="cranker in home.crank">
     Here's a cranker.
-    <div class="dirModalTest" full-dir-modal modal-full="true" modal-size="full" modal-title="cranker.title" modal-content="cranker.content">
-        <div>Click</div>
+    <div class="dirModalTest" full-dir-modal button-text="Full Window Modal">
+        <h3>{{cranker.title}}</h3>
+        <p style="text-align: left">{{cranker.content}}</p>
     </div>
-    <div class="dirModalTest2" dir-modal modal-size="400" modal-title="cranker.title" modal-content="cranker.content">
-        <p>Click smaller</p>
+    <div class="dirModalTest2" dir-modal modal-size="400" button-text="Sized Window">
+        <h3>{{}}cranker.title}}</h3>
+        <p style="text-align: left">{{cranker.content}}</p>
     </div>
 </div>

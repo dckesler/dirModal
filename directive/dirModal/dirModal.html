@@ -1,7 +1,6 @@
 
-<div ng-transclude ng-show="!modal.active && !modal.transition"></div>
-<!-- For smaller window -->
-<div ng-show="modal.active && !modal.transition">
-    <h2>{{modal.modalTitle}}</h2>
-    <p style="text-align: left">{{modal.modalContent}}</p>
+<div ng-transclude ng-show="modal.active && !modal.transition">
+</div>
+<div ng-show="!modal.active && !modal.transition">
+    <p>{{modal.buttonText}}</p>
 </div>

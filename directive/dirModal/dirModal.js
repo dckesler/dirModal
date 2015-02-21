@@ -5,10 +5,6 @@
     function dirModal($timeout){
         return {
             restrict: "A",
-            scope: {
-                modalTitle: "=",
-                modalContent: "="
-            },
             templateUrl: "directive/dirModal/dirModal.html",
             controller: function(){
                 var modal = this;
@@ -21,6 +17,9 @@
             link: function(scope, elem, attrs){
                 $timeout(reset);
                 function reset(){
+                    if(attrs.buttonText){
+                        scope.modal.buttonText = attrs.buttonText;
+                    }
                     var modal;
                     var backgroundFade;
 
